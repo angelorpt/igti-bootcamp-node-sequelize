@@ -1,0 +1,32 @@
+version: "3.8"
+
+networks:
+  rede:
+    driver: bridge
+
+services:
+  node:
+    build:
+      context: ./api
+      target: DEV
+    container_name: api-sequelize-igti
+    volumes:
+      - ./api:/app
+    ports:
+      - 3000:3000
+    networks:
+      - rede
+
+  portgres:
+    image: postgres
+    container_name: pg-sequelize-igti
+    ports:
+      - 5432:5432
+    volumes:
+      - .docker/pg_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRESS_DB:db_sequelize
+      - POSTGRESS_USER=admin
+      - POSTGRESS_PASSWORD=admin
+    networks:
+      - rede
