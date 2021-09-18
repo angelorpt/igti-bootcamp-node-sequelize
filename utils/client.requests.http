@@ -1,0 +1,11 @@
+# Utilizando o Plugin do VSCode - Rest Client
+
+@baseUrl = http://localhost:3000
+
+###
+
+GET {{baseUrl}}
+
+### 
+
+GET {{baseUrl}}/api/clients

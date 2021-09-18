@@ -1,6 +1,26 @@
 import ClientService from "../services/client.service.js";
+import Validator from "Validator";
 
-async function createClient(req, res, next) {
+export const validateRequestClient = (req, res, next) => {
+  const rules = {
+    name: "required|string|max:255",
+    cpf: "required|string|max:14",
+    phone: "required|string|max:20",
+    email: "required|email",
+    address: "required|string|max:255",
+  };
+
+  const validate = Validator.make(req, rules);
+
+  if (!validate.fails()) {
+    next();
+  } else {
+    const errors = v.getErrors();
+    console.log(errors);
+  }
+};
+
+const createClient = async (req, res, next) => {
   try {
     let client = req.body;
     if (
@@ -18,7 +38,7 @@ async function createClient(req, res, next) {
   } catch (err) {
     next(err);
   }
-}
+};
 
 async function getClients(req, res, next) {
   try {
