@@ -25,8 +25,8 @@ services:
     volumes:
       - .docker/pg_data:/var/lib/postgresql/data
     environment:
-      - POSTGRESS_DB:db_sequelize
-      - POSTGRESS_USER=admin
-      - POSTGRESS_PASSWORD=admin
+      - POSTGRES_DB:db_sequelize
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
     networks:
       - rede
